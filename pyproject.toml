@@ -1,0 +1,6 @@
+[tool.pylint.message_control]
+
+disable = [
+    "R0902", #too-many-instance-attributes
+    "R0903", #too-few-public-methods
+]
