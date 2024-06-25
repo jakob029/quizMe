@@ -1,9 +1,13 @@
 """Code owned by jakob029.
 
 Usage:
-- Personal Use: You are free to use, modify, and distribute the software for personal purposes without any obligations, provided there is no capital gain.
+- Personal Use: You are free to use, modify, and distribute the software for personal purposes
+                  without any obligations, provided there is no capital gain.
 
-- Commercial Use: If you intend to use this software for commercial purposes (including but not limited to integration, customization, or distribution in a commercial product), you are required to compensate the owner. Please contact jakob.eneroth@protonmail.com to negotiate terms of compensation and obtain necessary permissions.
+- Commercial Use: If you intend to use this software for commercial purposes (including but not
+                    limited to integration, customization, or distribution in a commercial
+                    product), you are required to compensate the owner. Please contact
+                    jakob.eneroth@protonmail.com
 """
 
 import tkinter as tk
@@ -14,8 +18,8 @@ import time
 class GuiInterface:
     """Graphical interface management class."""
 
-    DEFINITION_LABEL: tk.Label
-    QUESTION: DefinitionTermValue
+    definition_label: tk.Label
+    question: DefinitionTermValue
 
     def __init__(self, quiz_backend: QuizBackend) -> None:
         """Define window variables."""
@@ -30,10 +34,10 @@ class GuiInterface:
 
     def build_interface(self):
         """Set up the default UI interface."""
-        self.DEFINITION_LABEL = tk.Label(
+        self.definition_label = tk.Label(
             self.root_window, text="Quizz prog", font=("Arial", 20)
         )
-        self.DEFINITION_LABEL.pack(padx=20, pady=20)
+        self.definition_label.pack(padx=20, pady=20)
 
         self.entry_var = tk.StringVar()
         self.ans_entry = tk.Entry(textvariable=self.entry_var)
@@ -51,14 +55,14 @@ class GuiInterface:
 
     def _next_question(self):
         """Set up the a new question in the UI."""
-        self.QUESTION = self.quiz_backend.get_new_value()
-        self.DEFINITION_LABEL.config(text=self.QUESTION.term)
+        self.question = self.quiz_backend.get_new_value()
+        self.definition_label.config(text=self.question.term)
 
     def _reset_output(self, sleep_interval: float = 1.5):
         """Reset the output label after given time interval."""
         self.root_window.update()
         time.sleep(sleep_interval)
-        self.lbl.config(text=f"")
+        self.lbl.config(text="")
         self.root_window.update()
 
     def _correct_answer(self):
@@ -71,11 +75,11 @@ class GuiInterface:
         """Submit answer used for pushing the submit button."""
         user_input = self.ans_entry.get()
         self.entry_var.set("")
-        if user_input.lower() == self.QUESTION.definition.lower():
+        if user_input.lower() == self.question.definition.lower():
             self._correct_answer()
             return
 
         self.lbl.config(
-            text=f"Incorrect, the correct answer is {self.QUESTION.definition}"
+            text=f"Incorrect, the correct answer is {self.question.definition}"
         )
         self._reset_output()

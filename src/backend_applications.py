@@ -1,9 +1,13 @@
 """Code owned by jakob029.
 
 Usage:
-- Personal Use: You are free to use, modify, and distribute the software for personal purposes without any obligations, provided there is no capital gain.
+- Personal Use: You are free to use, modify, and distribute the software for personal purposes
+                  without any obligations, provided there is no capital gain.
 
-- Commercial Use: If you intend to use this software for commercial purposes (including but not limited to integration, customization, or distribution in a commercial product), you are required to compensate the owner. Please contact jakob.eneroth@protonmail.com to negotiate terms of compensation and obtain necessary permissions.
+- Commercial Use: If you intend to use this software for commercial purposes (including but not
+                    limited to integration, customization, or distribution in a commercial
+                    product), you are required to compensate the owner. Please contact
+                    jakob.eneroth@protonmail.com
 """
 
 import json
@@ -44,9 +48,8 @@ class QuizBackend:
         print("Welcome!\nAvalable training sets are:")
         print(os.listdir("./quizzes"))
         training_set = input("What set would you like to train on? ")
-        file = open(f"quizzes/{training_set}.json", "r")
-        self.set_dict = json.load(file)
-        file.close()
+        with open(f"quizzes/{training_set}.json", "r", encoding="utf-8") as file:
+            self.set_dict = json.load(file)
 
     def get_new_value(self) -> DefinitionTermValue:
         """Retrieve a new term value combo to quiz."""
