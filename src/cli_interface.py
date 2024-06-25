@@ -1,3 +1,11 @@
+"""Code owned by jakob029.
+
+Usage:
+- Personal Use: You are free to use, modify, and distribute the software for personal purposes without any obligations, provided there is no capital gain.
+
+- Commercial Use: If you intend to use this software for commercial purposes (including but not limited to integration, customization, or distribution in a commercial product), you are required to compensate the owner (Name/Contact) for such usage. Please contact jakob.eneroth@protonmail.com to negotiate terms of compensation and obtain necessary permissions.
+"""
+
 import json
 import random
 import time
