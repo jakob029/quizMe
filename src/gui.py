@@ -39,6 +39,8 @@ class GuiInterface:
         )
         self.definition_label.pack(padx=20, pady=20)
 
+        self.root_window.bind('<Return>', self.hit_enter)
+
         self.entry_var = tk.StringVar()
         self.ans_entry = tk.Entry(textvariable=self.entry_var)
         self.ans_entry.pack()
@@ -83,3 +85,7 @@ class GuiInterface:
             text=f"Incorrect, the correct answer is {self.question.definition}"
         )
         self._reset_output()
+
+    def hit_enter(self, _):
+        """Execute code when enter key is hit"""
+        self._submit_answer()
