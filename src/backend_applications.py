@@ -43,7 +43,8 @@ class QuizBackend:
         self._get_file_path()
 
         for term, definition in self.set_dict.items():
-            self.definition_term_list.append(DefinitionTermValue(term, definition, len(self.definition_term_list) - 1))
+            index = len(self.definition_term_list)
+            self.definition_term_list.append(DefinitionTermValue(term, definition, index))
             self.non_completed_terms = [i for i, _ in enumerate(self.definition_term_list)]
 
     def _get_file_path(self):
@@ -54,7 +55,10 @@ class QuizBackend:
         with open(f"quizzes/{training_set}.json", "r", encoding="utf-8") as file:
             self.set_dict = json.load(file)
 
-    def get_new_value(self) -> DefinitionTermValue:
+    def get_new_value(self) -> DefinitionTermValue | bool:
         """Retrieve a new term value combo to quiz."""
+        if not self.non_completed_terms:
+            return True
+
         index = random.choice(self.non_completed_terms)
         return self.definition_term_list[index]

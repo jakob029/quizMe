@@ -58,6 +58,8 @@ class GuiInterface:
     def _next_question(self):
         """Set up the a new question in the UI."""
         self.question = self.quiz_backend.get_new_value()
+        if self.question is True:
+            exit()
         self.definition_label.config(text=self.question.term)
 
     def _reset_output(self, sleep_interval: float = 1.5):
@@ -70,6 +72,8 @@ class GuiInterface:
     def _correct_answer(self, question_index: int):
         """Set up next stage when correct answer is given."""
         self.lbl.config(text="That was correct!")
+        print(question_index)
+        print(self.quiz_backend.non_completed_terms)
         self.quiz_backend.non_completed_terms.remove(question_index)
         self._reset_output()
         self._next_question()
