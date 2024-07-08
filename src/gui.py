@@ -67,9 +67,10 @@ class GuiInterface:
         self.lbl.config(text="")
         self.root_window.update()
 
-    def _correct_answer(self):
+    def _correct_answer(self, question_index: int):
         """Set up next stage when correct answer is given."""
         self.lbl.config(text="That was correct!")
+        self.quiz_backend.non_completed_terms.remove(question_index)
         self._reset_output()
         self._next_question()
 
@@ -78,7 +79,7 @@ class GuiInterface:
         user_input = self.ans_entry.get()
         self.entry_var.set("")
         if user_input.lower() == self.question.definition.lower():
-            self._correct_answer()
+            self._correct_answer(self.question.index)
             return
 
         self.lbl.config(
