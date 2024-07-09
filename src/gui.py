@@ -18,6 +18,7 @@ import time
 class GuiInterface:
     """Graphical interface management class."""
 
+    answer_count: int = 0
     definition_label: tk.Label
     question: DefinitionTermValue
 
@@ -59,6 +60,8 @@ class GuiInterface:
         """Set up the a new question in the UI."""
         self.question = self.quiz_backend.get_new_value()
         if self.question is True:
+            self.lbl.config(text="Set complete, good job!")
+            self._reset_output(2)
             exit()
         self.definition_label.config(text=self.question.term)
 
@@ -72,9 +75,10 @@ class GuiInterface:
     def _correct_answer(self, question_index: int):
         """Set up next stage when correct answer is given."""
         self.lbl.config(text="That was correct!")
-        print(question_index)
-        print(self.quiz_backend.non_completed_terms)
-        self.quiz_backend.non_completed_terms.remove(question_index)
+        if self.answer_count == 1:
+            self.quiz_backend.non_completed_terms.remove(question_index)
+        self.answer_count = 0
+
         self._reset_output()
         self._next_question()
 
@@ -82,6 +86,7 @@ class GuiInterface:
         """Submit answer used for pushing the submit button."""
         user_input = self.ans_entry.get()
         self.entry_var.set("")
+        self.answer_count += 1
         if user_input.lower() == self.question.definition.lower():
             self._correct_answer(self.question.index)
             return
