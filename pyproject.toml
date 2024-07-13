@@ -1,5 +1,19 @@
-[tool.pylint.message_control]
+[project]
+name = "quizMe"
+version = "0.0.1"
+authors = [
+  { name="Jakob", email="jakob.eneroth@protonmail.com" },
+]
+description = "A simple quiz program"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
 
+
+[tool.pylint.message_control]
 disable = [
     "R0902", #too-many-instance-attributes
     "R0903", #too-few-public-methods

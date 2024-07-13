@@ -44,8 +44,12 @@ class QuizBackend:
 
         for term, definition in self.set_dict.items():
             index = len(self.definition_term_list)
-            self.definition_term_list.append(DefinitionTermValue(term, definition, index))
-            self.non_completed_terms = [i for i, _ in enumerate(self.definition_term_list)]
+            self.definition_term_list.append(
+                DefinitionTermValue(term, definition, index)
+            )
+            self.non_completed_terms = [
+                i for i, _ in enumerate(self.definition_term_list)
+            ]
 
     def _get_file_path(self):
         """Get a selection of quiz to use from the user."""

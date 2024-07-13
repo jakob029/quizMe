@@ -11,7 +11,7 @@ Usage:
 """
 
 import tkinter as tk
-from backend_applications import QuizBackend, DefinitionTermValue
+from src.quizme.backend_applications import QuizBackend, DefinitionTermValue
 import time
 
 
@@ -40,7 +40,7 @@ class GuiInterface:
         )
         self.definition_label.pack(padx=20, pady=20)
 
-        self.root_window.bind('<Return>', self.hit_enter)
+        self.root_window.bind("<Return>", self.hit_enter)
 
         self.entry_var = tk.StringVar()
         self.ans_entry = tk.Entry(textvariable=self.entry_var)

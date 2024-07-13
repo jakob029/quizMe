@@ -11,9 +11,9 @@ Usage:
 """
 
 import argparse
-from cli_interface import run_cli
-from gui import GuiInterface
-from backend_applications import QuizBackend
+from src.quizme.cli_interface import run_cli
+from src.quizme.gui import GuiInterface
+from src.quizme.backend_applications import QuizBackend
 
 
 def setup_flags():
